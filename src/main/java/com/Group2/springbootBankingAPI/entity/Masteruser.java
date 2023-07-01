@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class Masteruser {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int user_id;
     private String first_name;
     private String last_name;
@@ -21,6 +21,7 @@ public class Masteruser {
     private String permanent_add;
 //    @Column(nullable = true, length = 100)
     private String residential_add;
+    private String role;
 //    private String city;
 //    private String state;
 //    private int pin_code;

@@ -1,5 +1,7 @@
 package com.Group2.springbootBankingAPI.controller;
 
+import com.Group2.springbootBankingAPI.dto.KycdetailsDto;
+import com.Group2.springbootBankingAPI.dto.MasteruserDto;
 import com.Group2.springbootBankingAPI.entity.Kycdetails;
 import com.Group2.springbootBankingAPI.entity.Masteruser;
 import com.Group2.springbootBankingAPI.service.BankingService;
@@ -17,23 +19,32 @@ public class BankingController {
     @Autowired
     BankingService bankingService;
 
+
+
     @PostMapping("/createUser")
-    public String BankingSave(@RequestBody Masteruser masteruser)
+    public MasteruserDto BankingSave(@RequestBody MasteruserDto masteruser)
     {
         return bankingService.SaveUser(masteruser);
     }
 
     @PostMapping("/{userId}/createKyc")
-    public ResponseEntity<Kycdetails> createKyc(@RequestBody Kycdetails kycdetails, @PathVariable Integer userId)
+    public ResponseEntity<KycdetailsDto> createKyc(@RequestBody KycdetailsDto kycdetailsDto, @PathVariable Integer userId)
     {
-        Kycdetails createdKyc =  this.bankingService.SaveKyc(kycdetails,userId);
-        return new ResponseEntity<Kycdetails>(createdKyc, HttpStatus.CREATED);
+        KycdetailsDto createdKyc =  this.bankingService.SaveKyc(kycdetailsDto,userId);
+        return new ResponseEntity<KycdetailsDto>(createdKyc, HttpStatus.CREATED);
     }
 
     @GetMapping ("/getUsers")
-    public List<Masteruser> getAllUsers()
+    public List<MasteruserDto> getAllUsers()
     {
          return this.bankingService.getAllUser();
+
+    }
+
+    @GetMapping ("/getKycdetails")
+    public List<KycdetailsDto> getAllKycdetails()
+    {
+        return this.bankingService.getAllKycdetails();
 
     }
 }

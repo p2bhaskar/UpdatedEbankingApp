@@ -8,12 +8,14 @@ import lombok.Data;
 @Data
 public class Kycdetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int kyc_id;
     private String pan_no;
     private String aadhar_no;
     @Column(nullable = true, length = 64)
     private String cus_photo;
+
+
 
 
     @OneToOne
