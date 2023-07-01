@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class BankingController {
@@ -16,7 +18,8 @@ public class BankingController {
     BankingService bankingService;
 
     @PostMapping("/createUser")
-    public String BankingSave(@RequestBody Masteruser masteruser){
+    public String BankingSave(@RequestBody Masteruser masteruser)
+    {
         return bankingService.SaveUser(masteruser);
     }
 
@@ -25,6 +28,13 @@ public class BankingController {
     {
         Kycdetails createdKyc =  this.bankingService.SaveKyc(kycdetails,userId);
         return new ResponseEntity<Kycdetails>(createdKyc, HttpStatus.CREATED);
+    }
+
+    @GetMapping ("/getUsers")
+    public List<Masteruser> getAllUsers()
+    {
+         return this.bankingService.getAllUser();
+
     }
 }
 

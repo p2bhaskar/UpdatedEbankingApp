@@ -7,6 +7,8 @@ import com.Group2.springbootBankingAPI.repository.KycRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BankingService {
     @Autowired
@@ -18,6 +20,11 @@ public class BankingService {
     public String SaveUser(Masteruser masteruser) {
         bankingRepo.save(masteruser);
         return "User Saved Successfully";
+    }
+
+    public List<Masteruser> getAllUser() {
+       return bankingRepo.findAll();
+
     }
 
     public Kycdetails SaveKyc(Kycdetails kycdetails, Integer userId) {
