@@ -4,8 +4,10 @@ import com.Group2.springbootBankingAPI.dto.KycdetailsDto;
 import com.Group2.springbootBankingAPI.dto.MasteruserDto;
 import com.Group2.springbootBankingAPI.entity.Kycdetails;
 import com.Group2.springbootBankingAPI.entity.Masteruser;
+import com.Group2.springbootBankingAPI.entity.UserLogin;
 import com.Group2.springbootBankingAPI.repository.BankingRepo;
 import com.Group2.springbootBankingAPI.repository.KycRepo;
+import com.Group2.springbootBankingAPI.repository.UserLoginRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,10 +24,16 @@ public class BankingService {
     private KycRepo kycRepo;
 
     @Autowired
+    private UserLoginRepository userLoginRepository;
+
+    @Autowired
    private ModelMapper modelMapper;
 
-    public MasteruserDto SaveUser(MasteruserDto masteruser) {
+    public MasteruserDto SaveUser(MasteruserDto masteruser,Long userLoginId) {
 
+        UserLogin userLogin=this.userLoginRepository.findById(userLoginId).orElseThrow(
+                () -> new RuntimeException("Bad Login credentials"));
+        masteruser.setUserLogin(userLogin);
         Masteruser user= this.modelMapper.map(masteruser,Masteruser.class);
         Masteruser user1= bankingRepo.save(user);
         return this.modelMapper.map(user1,MasteruserDto.class);

@@ -1,6 +1,7 @@
 package com.Group2.springbootBankingAPI.dto;
 
 import com.Group2.springbootBankingAPI.entity.Kycdetails;
+import com.Group2.springbootBankingAPI.entity.UserLogin;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
@@ -14,7 +15,7 @@ public class MasteruserDto
     private String dob;
     private String permanent_add;
     private String residential_add;
-    private String role;
+  //  private String role;
 //    private String city;
 //    private String state;
 //    private int pin_code;
@@ -28,5 +29,7 @@ public class MasteruserDto
 //    One to one mapping user ID
 
     //private KycdetailsDto kycdetailsDto;
+
+    private UserLogin userLogin;
 
 }

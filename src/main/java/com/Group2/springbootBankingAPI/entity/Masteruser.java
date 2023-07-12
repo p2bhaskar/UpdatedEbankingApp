@@ -36,9 +36,10 @@ public class Masteruser {
  @OneToOne(mappedBy = "masteruser",cascade = CascadeType.ALL)
    private Kycdetails kycdetails;
 
-   // @OneToMany (mappedBy="post",cascade=CascadeType.ALL)
+ @OneToOne
+ private UserLogin userLogin;
 
-   // private List<Comment> comments = new ArrayList<>();
+
 
 
 }

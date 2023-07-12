@@ -18,6 +18,8 @@ public class Kycdetails {
 
 
 
+
+
     @OneToOne
     private  Masteruser masteruser;
 
